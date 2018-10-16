@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MCP - Antminer</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    
+    <link rel="stylesheet" href="dist/css/skins/skin-purple.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+
+<body class="hold-transition skin-purple layout-boxed sidebar-mini">  
+    <div class="wrapper">
+        <header class="main-header">
+            <a href="" class="logo">
+                <span class="logo-mini"><b>MCP</b></span>
+                <span class="logo-lg">Mining<b>Control</b>Panel</span>
+            </a>
+
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- <img src="<?php echo $account_details['avatar']; ?>" class="user-image" alt="User Image"> -->
+                                <span class="hidden-xs">
+									Options
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- 
+                                <li class="user-header">
+                                    <img src="<?php echo $account_details['avatar']; ?>" class="img-circle" alt="User Image">
+                                    <p>
+                                        <?php echo $account_details['firstname']; ?> <?php echo $account_details['lastname']; ?>
+                                        <small><?php echo $account_details['email']; ?></small>
+                                    </p>
+                                </li>
+                                -->
+                                <!-- Menu Body -->
+                                
+                                <li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Restart</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Reboot</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Help</a>
+                                    </div>
+                                </li>
+                                
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="<?php echo $site['url']; ?>/dashboard?c=profile" class="btn btn-default btn-flat">MCP Dashboard</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="<?php echo $site['url']; ?>/logout" class="btn btn-default btn-flat">Logout</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="active">
+                    	<a href="#" onclick="toggle_content('content_dashboard');">
+                        	<i class="fa fa-home"></i> 
+                        	<span>Dashboard</span>
+                        </a>
+                    </li>
+                    
+                    <li class="active">
+                    	<a href="#" onclick="toggle_content('content_settings');">
+                        	<i class="fa fa-gear"></i> 
+                        	<span>Miner Settings</span>
+                        </a>
+                    </li>
+
+                    <li class="active">
+                        <a href="#" onclick="toggle_content('content_logs');">
+                            <i class="fa fa-file"></i> 
+                            <span>Logs</span>
+                        </a>
+                    </li>
+                    
+                    <!--
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="#">Link in level 2</a></li>
+                            <li><a href="#">Link in level 2</a></li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </section>
+        </aside>
+		
+        <div class="content-wrapper">
+			
+            <div id="status_message"></div>
+                        	
+            <!--
+            <section class="content-header">
+                <h1>Dashboard </h1>
+                <ol class="breadcrumb">
+                    <li class="active"><a href="<?php echo $site['url']; ?>/dashboard">Dashboard</a></li>
+                </ol>
+            </section>
+            -->
+
+            <section class="content">
+                <div id="content_dashboard" class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <section class="content">
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Dashboard</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-xs-6" id="dashboard_1">
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading text-center">
+                                                    Hashrate
+                                                </div>
+                                                <div class="panel-body text-center">
+                                                    <span id="show_ghs5s" class="gauge_none text-center">
+                                                        <img src="widget-loader-lg-en.gif" height="50px">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-xs-6" id="dashboard_2">
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading text-center">
+                                                    Fan Speed
+                                                </div>
+                                                <div class="panel-body text-center">
+                                                    <span id="show_fan_speed" class="gauge_none text-center">
+                                                        <img src="widget-loader-lg-en.gif" height="50px">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-xs-6" id="dashboard_3">
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading text-center">
+                                                    Temp
+                                                </div>
+                                                <div class="panel-body text-center">
+                                                    <span id="show_acg_pcb_temp" class="gauge_none text-center">
+                                                        <img src="widget-loader-lg-en.gif" height="50px">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-lg-2 col-xs-6" id="dashboard_4">
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading text-center">
+                                                    Hardware
+                                                </div>
+                                                <div class="panel-body text-center">
+                                                    <span id="ant_minertype">
+                                                        <img src="widget-loader-lg-en.gif" height="50px">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-xs-6">
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading text-center">
+                                                    Uptime
+                                                </div>
+                                                <div class="panel-body text-center">
+                                                    <span id="show_elapsed">
+                                                        <img src="widget-loader-lg-en.gif" height="50px">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-xs-6">
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading text-center">
+                                                    ASICs
+                                                </div>
+                                                <div class="panel-body text-center">
+                                                    <span id="show_total_asics">
+                                                        <img src="widget-loader-lg-en.gif" height="50px">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content_settings" class="container-fluid" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            sample settings content
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content_logs" class="container-fluid" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            sample logs content
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <!-- Anything you want -->
+            </div>
+            <strong>Copyright &copy; <a href="http://miningcontrolpanel.com">MCP</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+
+    <!-- jQuery 2.1.4 -->
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/app.min.js"></script>
+
+    <script src="raphael-2.1.4.min.js"></script>
+    <script src="justgage.js"></script>
+
+    <script>
+        function show_additional_options(elem)
+        {
+            if(elem.value == 'DHCP'){
+                $('#static_ip_settings').addClass("hidden");
+            }else{
+                $('#static_ip_settings').removeClass("hidden");
+            }
+        }
+
+        function detectmob()
+        {
+            if( navigator.userAgent.match(/Android/i)
+                || navigator.userAgent.match(/webOS/i)
+                || navigator.userAgent.match(/iPhone/i)
+                || navigator.userAgent.match(/iPad/i)
+                || navigator.userAgent.match(/iPod/i)
+                || navigator.userAgent.match(/BlackBerry/i)
+                || navigator.userAgent.match(/Windows Phone/i)
+            )
+            {
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        function secondsTotime(seconds)
+        {
+            var numyears = Math.floor(seconds / 31536000);
+            var numdays = Math.floor((seconds % 31536000) / 86400); 
+            var numhours = Math.floor(((seconds % 31536000) % 86400) / 3600);
+            var numminutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60);
+            var numseconds = (((seconds % 31536000) % 86400) % 3600) % 60;
+
+            if(numdays == 0 || numdays == 1 || numdays == 2 || numdays == 3 || numdays == 4 || numdays == 5 || numdays == 6 || numdays == 7 || numdays == 8 || numdays == 9)
+            {
+                var numdays = '0' + numdays;
+            }
+
+            if(numhours == 0 || numhours == 1 || numhours == 2 || numhours == 3 || numhours == 4 || numhours == 5 || numhours == 6 || numhours == 7 || numhours == 8 || numhours == 9)
+            {
+                var numhours = '0' + numhours;
+            }
+
+            if(numminutes == 0 || numminutes == 1 || numminutes == 2 || numminutes == 3 || numminutes == 4 || numminutes == 5 || numminutes == 6 || numminutes == 7 || numminutes == 8 || numminutes == 9)
+            {
+                var numminutes = '0' + numminutes;
+            }
+            
+            var results = '';
+
+            if(numdays == 0)
+            {
+                var results = numhours + ":" + numminutes + ":" + numseconds;
+            }else{
+                var results = numdays + "d, " + numhours + ":" + numminutes;
+            }
+            return results;
+            // return numdays + "d, " + numhours + "hrs, " + numminutes + "m, " + numseconds + "s";
+        }
+
+        $.getJSON("/cgi-bin/get_miner_conf.cgi", function(data)
+        {
+            $("#pool_1_url").val(data.pools[0].url);
+            $("#pool_1_user").val(data.pools[0].user);
+            $("#pool_1_pass").val(data.pools[0].pass);
+
+            $("#pool_2_url").val(data.pools[1].url);
+            $("#pool_2_user").val(data.pools[1].user);
+            $("#pool_2_pass").val(data.pools[1].pass);
+
+            $("#pool_3_url").val(data.pools[2].url);
+            $("#pool_3_user").val(data.pools[2].user);
+            $("#pool_3_pass").val(data.pools[2].pass);
+
+            $("#fan_speed").val(data['bitmain-fan-pwm']);
+
+            $("#voltage").val(data['bitmain-voltage']);
+            
+            $("#frequency").val(data['bitmain-freq']);
+            // document.getElementById(miners[i].id + '_col_6').innerHTML += '<b>Cost:</b> $'+miners[i].cost+' <br>';
+        });
+
+        // every 5 seconds in milliseconds
+        var refreshTime = 1000;
+
+        // get btc price
+        window.setInterval( function()
+        {
+            $.ajax({
+                url: '/cgi-bin/get_crypto_prices.cgi',
+                type: 'GET',
+                dataType: 'json',
+                timeout: 30000,
+                cache: false,
+                success: function(data) {
+                    try {
+                        $('#btc_price').html('<h4>Bitcoin</h4>$' + data.BTC.usd + '<br><br><h4>BitcoinCash</h4>$' + data.BCH.usd);
+                    } catch (err) {
+                        alert('Invalid system and miner configuration file. Edit manually or reset to default.');
+                    }
+                },
+                error: function() {
+                    // console.log(data);
+                }
+            });
+        }, refreshTime );
+        
+        // get system status
+        window.setInterval( function()
+        {
+            $.ajax({
+                url: '/cgi-bin/get_system_info.cgi',
+                type: 'GET',
+                dataType: 'json',
+                timeout: 30000,
+                cache: false,
+                success: function(data) {
+                    try {
+                        if(data.minertype == 'Antminer S9')
+                        {
+
+                        }
+
+                        if(data.minertype == 'Antminer S9j')
+                        {
+                            
+                        }
+
+                        $('#miner_pending_status').addClass("hidden");
+                        if(data.bmminer_version == '')
+                        {
+                            $('#miner_online').addClass("hidden");
+                            $('#miner_offline').removeClass("hidden");
+                            $('#pool_1_stats').addClass("hidden");
+                            $('#pool_2_stats').addClass("hidden");
+                            $('#pool_3_stats').addClass("hidden");
+                        }else{
+                            $('#miner_offline').addClass("hidden");
+                            $('#miner_online').removeClass("hidden");
+                            $('#pool_1_stats').removeClass("hidden");
+                            $('#pool_2_stats').removeClass("hidden");
+                            $('#pool_3_stats').removeClass("hidden");
+                            $("#ant_minertype").html(data.minertype);
+                            document.title = 'MCP - ' + data.minertype;
+                            $("#ant_nettype").html(data.nettype);
+                            $("#ant_netdevice").html(data.netdevice);
+                            $("#ant_netmask").html(data.netmask);
+                            $("#ant_gateway").html(data.gateway);
+                            $("#ant_dnsservers").html(data.dnsservers);
+                            $("#ant_uptime").html(data.uptime);
+                            $("#ant_loadaverage").html(data.loadaverage);
+
+                            percent = 0;
+                            if (data.mem_used != '' && data.mem_total != '' && data.mem_total != '0') {
+                                percent = Math.round(data.mem_used * 100 / data.mem_total);
+                            }
+                            $('#mem_total_div').attr('aria-valuenow', percent).css('width', percent);
+
+                            percent = 0;
+                            if (data.mem_free != '' && data.mem_total != '' && data.mem_total != '0') {
+                                percent = Math.round(data.mem_free * 100 / data.mem_total);
+                            }
+                            $('#mem_free_div').attr('aria-valuenow', percent).css('width', percent);
+
+                            percent = 0;
+                            if (data.mem_buffers != '' && data.mem_total != '' && data.mem_total != '0') {
+                                percent = Math.round(data.mem_buffers * 100 / data.mem_total);
+                            }
+
+                            percent = 0;
+                            if (data.mem_cached != '' && data.mem_total != '' && data.mem_total != '0') {
+                                percent = Math.round(data.mem_cached * 100 / data.mem_total);
+                            }
+
+                            $("#ant_system_mode").html(data.system_mode);
+                            hw_version = data.ant_hwv;
+                            $("#ant_system_hardware_version").html(hw_version);
+                            $("#ant_system_kernel_version").html(data.system_kernel_version);
+                            $("#ant_system_filesystem_version").html(data.system_filesystem_version);
+                            $("#ant_system_logic_version").html(data.system_logic_version);
+                            $("#ant_bmminer_version").html(data.bmminer_version);
+
+                            if(data.bmminer_version == '')
+                            {
+                                $("#start_stop_miner").html('<button type="button" class="btn btn-success" style="width: 100%;">Start Miner</button>');
+                            }else{
+                                $("#start_stop_miner").html('<button type="button" class="btn btn-danger" style="width: 100%;">Stop Miner</button>');
+                            }
+                        }
+                    } catch (err) {
+                        alert('Invalid system and miner configuration file. Edit manually or reset to default.');
+                    }
+                },
+                error: function() {
+                    console.log(data);
+                }
+            });
+        }, refreshTime );
+
+        // get network settings
+        function get_network_settings()
+        {
+            $.ajax({
+                url: '/cgi-bin/get_network_info.cgi',
+                type: 'GET',
+                dataType: 'json',
+                timeout: 30000,
+                cache: false,
+                success: function(data) {
+                    try {
+                        $("select option[value=" + data.nettype + "]").attr("selected","selected");
+                        $("#hostname").val(data.conf_hostname);
+                        $("#hostname").val(data.conf_hostname);
+                        $("#ip_address").val(data.ipaddress);
+                        $("#subnet").val(data.conf_netmask);
+                        $("#gateway").val(data.conf_gateway);
+                        $("#dns_server").val(data.conf_dnsservers);
+                    } catch (err) {
+                        alert('Invalid system and miner configuration file. Edit manually or reset to default.');
+                    }
+                },
+                error: function() {
+                    console.log(data);
+                }
+            });
+        }
+
+        // get miner status
+        window.setInterval( function()
+        {
+            $.getJSON("/cgi-bin/get_miner_status.cgi", function(data){
+                $("#show_elapsed").html(secondsTotime(data.summary.elapsed));
+
+                data.summary.ghs5s = data.summary.ghs5s / 1000;
+
+                $("#show_ghs5s").html('');
+                var gg1 = new JustGage({
+                    id: "show_ghs5s",
+                    value: data.summary.ghs5s.toFixed(2),
+                    min: 0,
+                    max: 16,
+                    gaugeWidthScale: 1,
+                    counter: false,
+                    relativeGaugeSize: true,
+                    formatNumber: true,
+                    label: "THs"
+                });
+
+                $("#show_fan_speed").html('');
+                var gg1 = new JustGage({
+                    id: "show_fan_speed",
+                    value: data.devs[0].fan,
+                    min: 2100,
+                    max: 6000,
+                    gaugeWidthScale: 1,
+                    counter: false,
+                    relativeGaugeSize: true,
+                    formatNumber: true,
+                    label: "RPM"
+                });
+
+                var x = +data.devs[0].temp + +data.devs[1].temp + +data.devs[2].temp;
+                var y = x/3;
+                $("#show_acg_pcb_temp").html('');
+                var gg1 = new JustGage({
+                    id: "show_acg_pcb_temp",
+                    value: y.toFixed(2),
+                    min: 0,
+                    max: 115,
+                    gaugeWidthScale: 1,
+                    counter: false,
+                    relativeGaugeSize: true,
+                    formatNumber: true,
+                    label: "°C"
+                });
+
+                var x = +data.devs[0].chain_acn + +data.devs[1].chain_acn + +data.devs[2].chain_acn;
+                $("#show_total_asics").html(x);
+
+                $("#pool_1_stats").show();
+                $("#pool_2_stats").show();
+                $("#pool_3_stats").show();
+
+                if(data.pools[0].url != ''){
+                    $("#show_pool_1_status").html(data.pools[0].status);
+                    $("#show_pool_1_url").html(data.pools[0].url);
+                    $("#show_pool_1_user").html(data.pools[0].user);
+                    $("#show_pool_1_accepted").html(data.pools[0].accepted);
+                    $("#show_pool_1_rejected").html(data.pools[0].rejected);
+                    $("#show_pool_1_discarded").html(data.pools[0].discarded);
+                    if(data.pools[0].status == 'Alive')
+                    {
+                        $("#pool_1_stats_content").removeClass('panel-primary');
+                        $("#pool_1_stats_content").addClass('panel-success');
+                    }else{
+                        $("#pool_1_stats_content").removeClass('panel-primary');
+                        $("#pool_1_stats_content").addClass('panel-warning');
+                    }
+                }else{
+                    $("#pool_1_stats_content").removeClass('panel-default');
+                    $("#pool_1_stats_content").addClass('panel-danger');
+                    $("#pool_1_stats_body").html('<center>Pool not configured.</center>');
+                }
+
+                if(data.pools[1].url != ''){
+                    $("#show_pool_2_status").html(data.pools[1].status);
+                    $("#show_pool_2_url").html(data.pools[1].url);
+                    $("#show_pool_2_user").html(data.pools[1].user);
+                    $("#show_pool_2_accepted").html(data.pools[1].accepted);
+                    $("#show_pool_2_rejected").html(data.pools[1].rejected);
+                    $("#show_pool_2_discarded").html(data.pools[1].discarded);
+                    if(data.pools[1].status == 'Alive')
+                    {
+                        $("#pool_2_stats_content").removeClass('panel-default');
+                        $("#pool_2_stats_content").addClass('panel-success');
+                    }else{
+                        $("#pool_2_stats_content").removeClass('panel-default');
+                        $("#pool_2_stats_content").addClass('panel-warning');
+                    }
+                }else{
+                    $("#pool_2_stats_content").removeClass('panel-default');
+                    $("#pool_2_stats_content").addClass('panel-danger');
+                    $("#pool_2_stats_body").html('<center>Pool not configured.</center>');
+                }
+
+                if(data.pools[2].url != ''){
+                    $("#show_pool_3_status").html(data.pools[2].status);
+                    $("#show_pool_3_url").html(data.pools[2].url);
+                    $("#show_pool_3_user").html(data.pools[2].user);
+                    $("#show_pool_3_accepted").html(data.pools[2].accepted);
+                    $("#show_pool_3_rejected").html(data.pools[2].rejected);
+                    $("#show_pool_3_discarded").html(data.pools[2].discarded);
+                    if(data.pools[2].status == 'Alive')
+                    {
+                        $("#pool_3_stats_content").removeClass('panel-default');
+                        $("#pool_3_stats_content").addClass('panel-success');
+                    }else{
+                        $("#pool_3_stats_content").removeClass('panel-default');
+                        $("#pool_3_stats_content").addClass('panel-warning');
+                    }
+                }else{
+                    $("#pool_3_stats_content").removeClass('panel-default');
+                    $("#pool_3_stats_content").addClass('panel-danger');
+                    $("#pool_3_stats_body").html('<center>Pool not configured.</center>');
+                }
+
+                $("#dashboard_4").height($("#dashboard_1").height());
+            });
+        }, refreshTime );
+
+        // get kernel log
+        window.setInterval( function()
+        {
+            $.ajax({
+                url: '/cgi-bin/get_kernel_log.cgi',
+                type: 'GET',
+                timeout: 30000,
+                dataType: 'text',
+                contentType: "text/plain",
+                cache: false,
+                success: function(data) {
+                    // $("#kernel_log_body").text(data);
+                    // $("#kernel_log_body").val(data);
+                    var data = data.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                    // var data = data.replace("bmminer", "DMMiner");
+                    
+                    var data = data.replace(new RegExp('bmminer', 'g'), 'DMMiner');
+                    var data = data.replace(new RegExp('Antminer S9', 'g'), 'DeltaMiner T14');
+                    var data = data.replace(new RegExp('S9', 'g'), 'T14');
+                    $("#kernel_log_body").html(data);
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    //alert('Ajax Error');
+                }
+            });
+        }, refreshTime );
+
+        // post settings to config file
+        $("#config_file").submit(function(event)
+        {
+            $('#saving_config').modal('show');
+
+            /* stop form from submitting normally */
+            event.preventDefault();
+
+            /* get the action attribute from the <form action=""> element */
+            var $form = $( this ),
+            url = $form.attr( 'action' );
+
+            /* Send the data using post with element id name and name2*/
+            var posting = $.post(url, { 
+                _ant_pool1url: $('#pool_1_url').val(), 
+                _ant_pool1user: $('#pool_1_user').val(),
+                _ant_pool1pw: $('#pool_1_pass').val(),
+                _ant_pool2url: $('#pool_2_url').val(), 
+                _ant_pool2user: $('#pool_2_user').val(),
+                _ant_pool2pw: $('#pool_2_pass').val(),
+                _ant_pool3url: $('#pool_3_url').val(), 
+                _ant_pool3user: $('#pool_3_user').val(),
+                _ant_pool3pw: $('#pool_3_pass').val(),
+                _ant_nobeeper: $('#_ant_nobeeper').val(),
+                _ant_notempoverctrl: $('#_ant_notempoverctrl').val(),
+                _ant_fan_customize_switch: $('#_ant_fan_customize_switch').val(),
+                _ant_fan_customize_value: $('#fan_speed').val(),
+                _ant_freq: $('#frequency').val(),
+            });
+
+            /* Alerts the results */
+            posting.done(function( data )
+            {
+                $('#saving_config').modal('hide');
+            });
+        });
+
+        // post settings to network file
+        $("#network_config").submit(function(event)
+        {
+            event.preventDefault();
+
+            $('#saving_config').modal('show');
+
+            var $form = $( this ),
+            url = $form.attr( 'action' );
+
+            var posting = $.post(url, { 
+                _ant_conf_nettype: $('#network_type').val(), 
+                _ant_conf_hostname: $('#hostname').val(),
+                _ant_conf_ipaddress: $('#ip_address').val(),
+                _ant_conf_netmask: $('#subnet').val(), 
+                _ant_conf_gateway: $('#gateway').val(),
+                _ant_conf_dnsservers: $('#dns_server').val(),
+            });
+
+            sleep(3000);
+
+            $('#saving_config').modal('hide');
+        });
+
+        // post settings to password file
+        $("#password_config").submit(function(event)
+        {
+            event.preventDefault();
+
+            $('#saving_config').modal('show');
+
+            var $form = $( this ),
+            url = $form.attr( 'action' );
+
+            var posting = $.post(url, { 
+                current_pw: $('#current_password').val(), 
+                new_pw: $('#new_password_1').val(),
+                new_pw_ctrl: $('#new_password_2').val(),
+            });
+
+            // sleep(3000);
+
+            $('#saving_config').modal('hide');
+        });
+
+        $(document).ready(function()
+        {
+            get_network_settings();
+        });
+
+        function toggle_content(show_div)
+        {
+            $("#content_dashboard").hide();
+            $("#content_settings").hide();
+            $("#content_logs").hide();
+            $("#" + show_div).show();
+        }
+	</script>
+</body>
+</html>
