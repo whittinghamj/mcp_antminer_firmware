@@ -820,21 +820,22 @@ desired effect
                 // if(data.devs[0].url != ''){}
                 $("#board_0_chain").html(data.devs[0].index);
                 $("#board_0_asic").html(data.devs[0].chain_acn);
-                var board_0_freq = data.devs[0].freq.split(',')[64];
+                var board_0_freq_temp = data.devs[0].freq.split(',')[64];
+                var board_0_freq = board_0_freq_temp.replace("freq_avg6=", "", "g")
                 $("#board_0_freq").html(board_0_freq);
                 $("#board_0_temp").html(data.devs[0].temp);
                 $("#board_0_status").html(data.devs[0].chain_acs);
 
                 $("#board_1_chain").html(data.devs[1].index);
                 $("#board_1_asic").html(data.devs[1].chain_acn);
-                var board_1_freq = data.devs[1].freq.split(',')[64];
+                var board_1_freq = data.devs[0].freq.split(',')[65];
                 $("#board_1_freq").html(board_1_freq);
                 $("#board_1_temp").html(data.devs[1].temp);
                 $("#board_1_status").html(data.devs[1].chain_acs);
 
                 $("#board_2_chain").html(data.devs[2].index);
                 $("#board_2_asic").html(data.devs[2].chain_acn);
-                var board_2_freq = data.devs[2].freq.split(',')[64];
+                var board_2_freq = data.devs[0].freq.split(',')[66];
                 $("#board_2_freq").html(board_2_freq);
                 $("#board_2_temp").html(data.devs[2].temp);
                 $("#board_2_status").html(data.devs[2].chain_acs);
