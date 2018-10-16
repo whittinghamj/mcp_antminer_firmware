@@ -827,11 +827,15 @@ desired effect
 
                 $("#board_1_chain").html(data.devs[1].index);
                 $("#board_1_asic").html(data.devs[1].chain_acn);
+                var board_1_freq = data.devs[1].freq.split(',')[0];
+                $("#board_1_freq").html(board_1_freq);
                 $("#board_1_temp").html(data.devs[1].temp);
                 $("#board_1_status").html(data.devs[1].chain_acs);
 
                 $("#board_2_chain").html(data.devs[2].index);
                 $("#board_2_asic").html(data.devs[2].chain_acn);
+                var board_2_freq = data.devs[2].freq.split(',')[0];
+                $("#board_2_freq").html(board_2_freq);
                 $("#board_2_temp").html(data.devs[2].temp);
                 $("#board_2_status").html(data.devs[2].chain_acs);
 
