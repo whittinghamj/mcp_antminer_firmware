@@ -829,7 +829,12 @@ desired effect
                 var board_0_error = board_0_error_temp.replace("chain_hw6=", "", "g");
                 $("#board_0_error").html(board_0_error);
 
-                $("#board_0_temp").html(data.devs[0].temp + '°C');
+                if(data.devs[0].temp > 60)
+                {
+                    $("#board_0_temp").html('<font style="color:red;">' + data.devs[0].temp + '°C' + '</font>');
+                }else{
+                    $("#board_0_temp").html(data.devs[0].temp + '°C');
+                }
                 $("#board_0_status").html(data.devs[0].chain_acs);
 
 
