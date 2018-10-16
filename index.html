@@ -596,6 +596,17 @@ desired effect
                         }
 
                         $('#miner_pending_status').addClass("hidden");
+
+                        $("#ant_minertype").html(data.minertype);
+                        document.title = 'MCP - ' + data.minertype;
+                        $("#ant_nettype").html(data.nettype);
+                        $("#ant_netdevice").html(data.netdevice);
+                        $("#ant_netmask").html(data.netmask);
+                        $("#ant_gateway").html(data.gateway);
+                        $("#ant_dnsservers").html(data.dnsservers);
+                        $("#ant_uptime").html(data.uptime);
+                        $("#ant_loadaverage").html(data.loadaverage);
+                        
                         if(data.bmminer_version == '')
                         {
                             $('#miner_online').addClass("hidden");
@@ -609,15 +620,6 @@ desired effect
                             $('#pool_1_stats').removeClass("hidden");
                             $('#pool_2_stats').removeClass("hidden");
                             $('#pool_3_stats').removeClass("hidden");
-                            $("#ant_minertype").html(data.minertype);
-                            document.title = 'MCP - ' + data.minertype;
-                            $("#ant_nettype").html(data.nettype);
-                            $("#ant_netdevice").html(data.netdevice);
-                            $("#ant_netmask").html(data.netmask);
-                            $("#ant_gateway").html(data.gateway);
-                            $("#ant_dnsservers").html(data.dnsservers);
-                            $("#ant_uptime").html(data.uptime);
-                            $("#ant_loadaverage").html(data.loadaverage);
 
                             percent = 0;
                             if (data.mem_used != '' && data.mem_total != '' && data.mem_total != '0') {
