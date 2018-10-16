@@ -1042,10 +1042,11 @@ desired effect
             $("#" + show_div).show();
         }
 
-        function access_remote_url(url)
+        function access_remote_url(external_url)
         {
+            alert(external_url);
             $.ajax({
-               url:url,
+               url:external_url,
                type:'GET',
                success: function(data){
                    // $('#content').html(data);
