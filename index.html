@@ -1036,10 +1036,32 @@ desired effect
 
         function toggle_content(show_div)
         {
-            $("#content_dashboard").hide();
-            $("#content_settings").hide();
-            $("#content_logs").hide();
-            $("#" + show_div).show();
+
+            $('content_dashboard').animate({'left' : '-50%'}, 500, function(){
+                $('.content_dashboard').removeClass('current');
+                $("#content_dashboard").hide();
+                $("#" + show_div).show();
+                $('#' + show_div).addClass('current').animate({'left' : '50%'}, 500);
+            });
+
+            $('#content_settings').animate({'left' : '-50%'}, 500, function(){
+                $('#content_settings').removeClass('current');
+                $("#content_settings").hide();
+                $("#" + show_div).show();
+                $('#' + show_div).addClass('current').animate({'left' : '50%'}, 500);
+            });
+
+            $('#content_logs').animate({'left' : '-50%'}, 500, function(){
+                $('#content_logs').removeClass('current');
+                $("#content_logs").hide();
+                $("#" + show_div).show();
+                $('#' + show_div).addClass('current').animate({'left' : '50%'}, 500);
+            });
+
+            // $("#content_dashboard").hide();
+            // $("#content_settings").hide();
+            // $("#content_logs").hide();
+            // $("#" + show_div).show();
         }
 
         function access_remote_url(external_url)
