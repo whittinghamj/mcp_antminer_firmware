@@ -384,13 +384,13 @@ desired effect
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>John</td>
-                                                    <td>John</td>
-                                                    <td>John</td>
-                                                    <td>John</td>
-                                                    <td>John</td>
-                                                    <td>John</td>
-                                                    <td>John</td>
+                                                    <td><span id="board_0_chain"></span></td>
+                                                    <td><span id="board_0_asic"></span></td>
+                                                    <td><span id="board_0_freq"></span></td>
+                                                    <td><span id="board_0_ghs"></span></td>
+                                                    <td><span id="board_0_error"></span></td>
+                                                    <td><span id="board_0_temp"></span></td>
+                                                    <td><span id="board_0_status"></span></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -726,7 +726,8 @@ desired effect
                 $("#pool_2_stats").show();
                 $("#pool_3_stats").show();
 
-                if(data.pools[0].url != ''){
+                if(data.pools[0].url != '')
+                {
                     $("#show_pool_1_status").html(data.pools[0].status);
                     $("#show_pool_1_url").html(data.pools[0].url);
                     $("#show_pool_1_user").html(data.pools[0].user);
@@ -747,7 +748,8 @@ desired effect
                     $("#pool_1_stats_body").html('<center>Pool not configured.</center>');
                 }
 
-                if(data.pools[1].url != ''){
+                if(data.pools[1].url != '')
+                {
                     $("#show_pool_2_status").html(data.pools[1].status);
                     $("#show_pool_2_url").html(data.pools[1].url);
                     $("#show_pool_2_user").html(data.pools[1].user);
@@ -768,7 +770,8 @@ desired effect
                     $("#pool_2_stats_body").html('<center>Pool not configured.</center>');
                 }
 
-                if(data.pools[2].url != ''){
+                if(data.pools[2].url != '')
+                {
                     $("#show_pool_3_status").html(data.pools[2].status);
                     $("#show_pool_3_url").html(data.pools[2].url);
                     $("#show_pool_3_user").html(data.pools[2].user);
@@ -788,6 +791,11 @@ desired effect
                     $("#pool_3_stats_content").addClass('panel-danger');
                     $("#pool_3_stats_body").html('<center>Pool not configured.</center>');
                 }
+
+                // if(data.devs[0].url != ''){}
+                $.each(data.devs, function(i, item) {
+                    alert(data[i].index);
+                });​
 
                 $("#dashboard_4").height($("#dashboard_1").height());
             });
