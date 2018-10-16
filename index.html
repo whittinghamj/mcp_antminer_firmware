@@ -161,7 +161,7 @@ desired effect
 
             <section class="content">
                 <div id="content_dashboard" class="container-fluid">
-                    
+                    <div class="row">
                         <div class="col-md-12">
                             <section class="content">
                                 <div class="box box-primary">
@@ -169,92 +169,229 @@ desired effect
                                         <h3 class="box-title">Dashboard</h3>
                                     </div>
                                     <div class="box-body">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-xs-6" id="dashboard_1">
-                                            <div class="panel panel-primary">
-                                                <div class="panel-heading text-center">
-                                                    Hashrate
+                                        <div class="row">
+                                            <div class="col-lg-4 col-xs-6" id="dashboard_1">
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading text-center">
+                                                        Hashrate
+                                                    </div>
+                                                    <div class="panel-body text-center">
+                                                        <span id="show_ghs5s" class="gauge_none text-center">
+                                                            <img src="widget-loader-lg-en.gif" height="50px">
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                                <div class="panel-body text-center">
-                                                    <span id="show_ghs5s" class="gauge_none text-center">
-                                                        <img src="widget-loader-lg-en.gif" height="50px">
-                                                    </span>
+                                            </div>
+
+                                            <div class="col-lg-4 col-xs-6" id="dashboard_2">
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading text-center">
+                                                        Fan Speed
+                                                    </div>
+                                                    <div class="panel-body text-center">
+                                                        <span id="show_fan_speed" class="gauge_none text-center">
+                                                            <img src="widget-loader-lg-en.gif" height="50px">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-xs-6" id="dashboard_3">
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading text-center">
+                                                        Temp
+                                                    </div>
+                                                    <div class="panel-body text-center">
+                                                        <span id="show_acg_pcb_temp" class="gauge_none text-center">
+                                                            <img src="widget-loader-lg-en.gif" height="50px">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-lg-2 col-xs-6" id="dashboard_4">
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading text-center">
+                                                        Hardware
+                                                    </div>
+                                                    <div class="panel-body text-center">
+                                                        <span id="ant_minertype">
+                                                            <img src="widget-loader-lg-en.gif" height="50px">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2 col-xs-6">
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading text-center">
+                                                        Uptime
+                                                    </div>
+                                                    <div class="panel-body text-center">
+                                                        <span id="show_elapsed">
+                                                            <img src="widget-loader-lg-en.gif" height="50px">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2 col-xs-6">
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading text-center">
+                                                        ASICs
+                                                    </div>
+                                                    <div class="panel-body text-center">
+                                                        <span id="show_total_asics">
+                                                            <img src="widget-loader-lg-en.gif" height="50px">
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-xs-6" id="dashboard_2">
-                                            <div class="panel panel-primary">
-                                                <div class="panel-heading text-center">
-                                                    Fan Speed
-                                                </div>
-                                                <div class="panel-body text-center">
-                                                    <span id="show_fan_speed" class="gauge_none text-center">
-                                                        <img src="widget-loader-lg-en.gif" height="50px">
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="row">
+                                            <div id="pool_1_stats" style="display: none;">
+                                                <div class="col-lg-4 col-xs-12">
+                                                    <div id="pool_1_stats_content" class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <strong>Pool 1</strong>
+                                                        </div>
+                                                        <div class="panel-body" id="pool_1_stats_body">
+                                                            <div class="row">
+                                                                <div class="col-lg-6 col-xs-12">
+                                                                    <strong>URL:</strong> <br>
+                                                                    <span id="show_pool_1_url"></span>
+                                                                </div>
+                                                                <div class="col-lg-6 col-xs-12">
+                                                                    <strong>User:</strong> <br>
+                                                                    <span id="show_pool_1_user"></span>
+                                                                </div>
+                                                            </div>
 
-                                        <div class="col-lg-4 col-xs-6" id="dashboard_3">
-                                            <div class="panel panel-primary">
-                                                <div class="panel-heading text-center">
-                                                    Temp
-                                                </div>
-                                                <div class="panel-body text-center">
-                                                    <span id="show_acg_pcb_temp" class="gauge_none text-center">
-                                                        <img src="widget-loader-lg-en.gif" height="50px">
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-lg-2 col-xs-6" id="dashboard_4">
-                                            <div class="panel panel-primary">
-                                                <div class="panel-heading text-center">
-                                                    Hardware
-                                                </div>
-                                                <div class="panel-body text-center">
-                                                    <span id="ant_minertype">
-                                                        <img src="widget-loader-lg-en.gif" height="50px">
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                            <div class="row">
+                                                                <hr>
+                                                            </div>
 
-                                        <div class="col-lg-2 col-xs-6">
-                                            <div class="panel panel-primary">
-                                                <div class="panel-heading text-center">
-                                                    Uptime
-                                                </div>
-                                                <div class="panel-body text-center">
-                                                    <span id="show_elapsed">
-                                                        <img src="widget-loader-lg-en.gif" height="50px">
-                                                    </span>
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Status:</strong> <br>
+                                                                    <span id="show_pool_1_status"></span>
+                                                                </div>
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Accepted:</strong> <br>
+                                                                    <span id="show_pool_1_accepted"></span>
+                                                                </div>
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Rejected:</strong> <br>
+                                                                    <span id="show_pool_1_rejected"></span>
+                                                                </div>
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Discarded:</strong> <br>
+                                                                    <span id="show_pool_1_discarded"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-lg-2 col-xs-6">
-                                            <div class="panel panel-primary">
-                                                <div class="panel-heading text-center">
-                                                    ASICs
+                                            <div id="pool_2_stats" style="display: none;">
+                                                <div class="col-lg-4 col-xs-12">
+                                                    <div id="pool_2_stats_content" class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <strong>Pool 2</strong>
+                                                        </div>
+                                                        <div class="panel-body" id="pool_2_stats_body">
+                                                            <div class="row">
+                                                                <div class="col-lg-6 col-xs-12">
+                                                                    <strong>URL:</strong> <br>
+                                                                    <span id="show_pool_2_url"></span>
+                                                                </div>
+                                                                <div class="col-lg-6 col-xs-12">
+                                                                    <strong>User:</strong> <br>
+                                                                    <span id="show_pool_2_user"></span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <hr>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Status:</strong> <br>
+                                                                    <span id="show_pool_2_status"></span>
+                                                                </div>
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Accepted:</strong> <br>
+                                                                    <span id="show_pool_2_accepted"></span>
+                                                                </div>
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Rejected:</strong> <br>
+                                                                    <span id="show_pool_2_rejected"></span>
+                                                                </div>
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Discarded:</strong> <br>
+                                                                    <span id="show_pool_2_discarded"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="panel-body text-center">
-                                                    <span id="show_total_asics">
-                                                        <img src="widget-loader-lg-en.gif" height="50px">
-                                                    </span>
+                                            </div>
+
+                                            <div id="pool_3_stats" style="display: none;">
+                                                <div class="col-lg-4 col-xs-12">
+                                                    <div id="pool_3_stats_content" class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <strong>Pool 3</strong>
+                                                        </div>
+                                                        <div class="panel-body" id="pool_3_stats_body">
+                                                            <div class="row">
+                                                                <div class="col-lg-6 col-xs-12">
+                                                                    <strong>URL:</strong> <br>
+                                                                    <span id="show_pool_3_url"></span>
+                                                                </div>
+                                                                <div class="col-lg-6 col-xs-12">
+                                                                    <strong>User:</strong> <br>
+                                                                    <span id="show_pool_3_user"></span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <hr>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Status:</strong> <br>
+                                                                    <span id="show_pool_3_status"></span>
+                                                                </div>
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Accepted:</strong> <br>
+                                                                    <span id="show_pool_3_accepted"></span>
+                                                                </div>
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Rejected:</strong> <br>
+                                                                    <span id="show_pool_3_rejected"></span>
+                                                                </div>
+                                                                <div class="col-lg-3 col-xs-6">
+                                                                    <strong>Discarded:</strong> <br>
+                                                                    <span id="show_pool_3_discarded"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
                             </section>
                         </div>
-                   
+                   </div>
                 </div>
 
                 <div id="content_settings" class="container-fluid" style="display: none;">
