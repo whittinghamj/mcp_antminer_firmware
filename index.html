@@ -165,14 +165,14 @@ desired effect
                         <div class="col-lg-3">
                             <div class="box box-primary">
                                 <div class="box-body">
-                                    <strong>Hardware:</strong> <span id="show_elapsed"></span>
+                                    <strong>Hardware:</strong> <span id="ant_minertype"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="box box-primary">
                                 <div class="box-body">
-                                    <strong>Uptime:</strong> <span id="ant_minertype"></span>
+                                    <strong>Uptime:</strong> <span id="show_elapsed"></span>
                                 </div>
                             </div>
                         </div>
@@ -606,7 +606,7 @@ desired effect
                         $("#ant_dnsservers").html(data.dnsservers);
                         $("#ant_uptime").html(data.uptime);
                         $("#ant_loadaverage").html(data.loadaverage);
-                        
+
                         if(data.bmminer_version == '')
                         {
                             $('#miner_online').addClass("hidden");
