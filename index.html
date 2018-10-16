@@ -82,24 +82,21 @@ desired effect
                                 <!-- Menu Body -->
                                 
                                 <li class="user-body">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Restart</a>
+                                    <div class="col-xs-6 text-center">
+                                        <a href="#" onclick="access_remote_url('cgi-bin/kill_bmminer.cgi');">Restart Mining</a>
                                     </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Reboot</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Help</a>
+                                    <div class="col-xs-6 text-center">
+                                        <a href="#" onclick="access_remote_url('cgi-bin/reboot.cgi');">Reboot Miner</a>
                                     </div>
                                 </li>
                                 
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="<?php echo $site['url']; ?>/dashboard?c=profile" class="btn btn-default btn-flat">MCP Dashboard</a>
+                                        <a href="https://dashboard.miningcontrolpanel.com" target="_blank" class="btn btn-default btn-flat">MCP Dashboard</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="<?php echo $site['url']; ?>/logout" class="btn btn-default btn-flat">Logout</a>
+                                        <!-- <a href="<?php echo $site['url']; ?>/logout" class="btn btn-default btn-flat">Logout</a> -->
                                     </div>
                                 </li>
                             </ul>
@@ -195,7 +192,7 @@ desired effect
                     <div id="miner_pending_status" class="text-center">
                         <img src="widget-loader-lg-en.gif" height="250px">
                     </div>
-                    
+
                     <div id="miner_offline" class="hidden">
                         <div class="row">
                             <div class="col-lg-12 col-xs-12">
@@ -1043,6 +1040,17 @@ desired effect
             $("#content_settings").hide();
             $("#content_logs").hide();
             $("#" + show_div).show();
+        }
+
+        function access_remote_url(url)
+        {
+            $.ajax({
+               url:url,
+               type:'GET',
+               success: function(data){
+                   // $('#content').html(data);
+               }
+            });
         }
 	</script>
 </body>
