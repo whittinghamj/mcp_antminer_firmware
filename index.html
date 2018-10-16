@@ -820,25 +820,45 @@ desired effect
                 // if(data.devs[0].url != ''){}
                 $("#board_0_chain").html(data.devs[0].index);
                 $("#board_0_asic").html(data.devs[0].chain_acn);
+
                 var board_0_freq_temp = data.devs[0].freq.split(',')[64];
                 var board_0_freq = board_0_freq_temp.replace("freq_avg6=", "", "g");
                 $("#board_0_freq").html(board_0_freq);
+
+                var board_0_error_temp = data.devs[0].freq.split(',')[135];
+                var board_0_error = board_0_error_temp.replace("chain_hw6=", "", "g");
+                $("#board_0_error").html(board_0_error);
+
                 $("#board_0_temp").html(data.devs[0].temp);
                 $("#board_0_status").html(data.devs[0].chain_acs);
 
+
                 $("#board_1_chain").html(data.devs[1].index);
                 $("#board_1_asic").html(data.devs[1].chain_acn);
+
                 var board_1_freq_temp = data.devs[0].freq.split(',')[65];
                 var board_1_freq = board_1_freq_temp.replace("freq_avg7=", "", "g");
                 $("#board_1_freq").html(board_1_freq);
+
+                var board_1_error_temp = data.devs[0].freq.split(',')[136];
+                var board_1_error = board_1_error_temp.replace("chain_hw7=", "", "g");
+                $("#board_1_error").html(board_1_error);
+
                 $("#board_1_temp").html(data.devs[1].temp);
                 $("#board_1_status").html(data.devs[1].chain_acs);
 
+
                 $("#board_2_chain").html(data.devs[2].index);
                 $("#board_2_asic").html(data.devs[2].chain_acn);
+
                 var board_2_freq_temp = data.devs[0].freq.split(',')[66];
                 var board_2_freq = board_2_freq_temp.replace("freq_avg8=", "", "g");
                 $("#board_2_freq").html(board_2_freq);
+
+                var board_2_error_temp = data.devs[0].freq.split(',')[137];
+                var board_2_error = board_2_error_temp.replace("chain_hw8=", "", "g");
+                $("#board_2_error").html(board_2_error);
+
                 $("#board_2_temp").html(data.devs[2].temp);
                 $("#board_2_status").html(data.devs[2].chain_acs);
 
