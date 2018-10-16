@@ -392,6 +392,24 @@ desired effect
                                                     <td><span id="board_0_temp"></span></td>
                                                     <td><span id="board_0_status"></span></td>
                                                 </tr>
+                                                <tr>
+                                                    <td><span id="board_1_chain"></span></td>
+                                                    <td><span id="board_1_asic"></span></td>
+                                                    <td><span id="board_1_freq"></span></td>
+                                                    <td><span id="board_1_ghs"></span></td>
+                                                    <td><span id="board_1_error"></span></td>
+                                                    <td><span id="board_1_temp"></span></td>
+                                                    <td><span id="board_1_status"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span id="board_2_chain"></span></td>
+                                                    <td><span id="board_2_asic"></span></td>
+                                                    <td><span id="board_2_freq"></span></td>
+                                                    <td><span id="board_2_ghs"></span></td>
+                                                    <td><span id="board_2_error"></span></td>
+                                                    <td><span id="board_2_temp"></span></td>
+                                                    <td><span id="board_2_status"></span></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -797,6 +815,16 @@ desired effect
                 $("#board_0_asic").html(data.devs[0].chain_acn);
                 $("#board_0_temp").html(data.devs[0].temp);
                 $("#board_0_status").html(data.devs[0].chain_acs);
+
+                $("#board_1_chain").html(data.devs[1].index);
+                $("#board_1_asic").html(data.devs[1].chain_acn);
+                $("#board_1_temp").html(data.devs[1].temp);
+                $("#board_1_status").html(data.devs[1].chain_acs);
+
+                $("#board_2_chain").html(data.devs[2].index);
+                $("#board_2_asic").html(data.devs[2].chain_acn);
+                $("#board_2_temp").html(data.devs[2].temp);
+                $("#board_2_status").html(data.devs[2].chain_acs);
 
                 $("#dashboard_4").height($("#dashboard_1").height());
             });
