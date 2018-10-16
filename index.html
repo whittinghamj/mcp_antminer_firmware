@@ -828,8 +828,7 @@ desired effect
                 var board_0_error_temp = data.devs[0].freq.split(',')[135];
                 var board_0_error = board_0_error_temp.replace("chain_hw6=", "", "g");
                 $("#board_0_error").html(board_0_error);
-
-                if(data.devs[0].temp > 60)
+                if(data.devs[0].temp > 82)
                 {
                     $("#board_0_temp").html('<font style="color:red;">' + data.devs[0].temp + '°C' + '</font>');
                 }else{
@@ -848,8 +847,12 @@ desired effect
                 var board_1_error_temp = data.devs[0].freq.split(',')[136];
                 var board_1_error = board_1_error_temp.replace("chain_hw7=", "", "g");
                 $("#board_1_error").html(board_1_error);
-
-                $("#board_1_temp").html(data.devs[1].temp + '°C');
+                if(data.devs[1].temp > 82)
+                {
+                    $("#board_1_temp").html('<font style="color:red;">' + data.devs[1].temp + '°C' + '</font>');
+                }else{
+                    $("#board_1_temp").html(data.devs[1].temp + '°C');
+                }
                 $("#board_1_status").html(data.devs[1].chain_acs);
 
 
@@ -863,8 +866,12 @@ desired effect
                 var board_2_error_temp = data.devs[0].freq.split(',')[137];
                 var board_2_error = board_2_error_temp.replace("chain_hw8=", "", "g");
                 $("#board_2_error").html(board_2_error);
-
-                $("#board_2_temp").html(data.devs[2].temp + '°C');
+                if(data.devs[2].temp > 82)
+                {
+                    $("#board_2_temp").html('<font style="color:red;">' + data.devs[2].temp + '°C' + '</font>');
+                }else{
+                    $("#board_2_temp").html(data.devs[2].temp + '°C');
+                }
                 $("#board_2_status").html(data.devs[2].chain_acs);
 
                 $("#dashboard_4").height($("#dashboard_1").height());
