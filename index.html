@@ -793,9 +793,10 @@ desired effect
                 }
 
                 // if(data.devs[0].url != ''){}
-                $.each(data.devs, function(i, item) {
-                    alert(data.devs[i].index);
-                });​
+                $("#board_0_chain").html(data.devs[0].index);
+                $("#board_0_asic").html(data.devs[0].chain_acn);
+                $("#board_0_temp").html(data.devs[0].temp);
+                $("#board_0_status").html(data.devs[0].chain_acs);
 
                 $("#dashboard_4").height($("#dashboard_1").height());
             });
