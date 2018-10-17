@@ -1548,6 +1548,24 @@ desired effect
                }
             });
         }
+
+        function check_internet(){
+            jQuery.ajaxSetup({async:false});
+            re="";
+            r=Math.round(Math.random() * 10000);
+            $.get("http://dashboard.miningcontrolpanel.com/check_internet.png",{subins:r},function(d){
+                re=true;
+            }).error(function(){
+                re=false;
+            });
+            return re;
+        }
+
+        if(check_internet()==true){
+            alert("Internet Connection Exists");
+        }else{
+            alert("Internet Connection Doesn't Exist");
+        }
 	</script>
 </body>
 </html>
