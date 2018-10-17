@@ -131,9 +131,9 @@ desired effect
                     </li>
                     
                     <li class="active">
-                        <a href="#" onclick="toggle_content('content_dev');">
-                            <i class="fa fa-dev"></i> 
-                            <span>Dev</span>
+                        <a href="#" onclick="toggle_content('content_mcp_dashboard');">
+                            <i class="fa fa-cloud"></i> 
+                            <span>MCP Dashboard</span>
                         </a>
                     </li>
 
@@ -657,7 +657,7 @@ desired effect
                     </div>
                 </div>
 
-                <div id="content_dev" class="container-fluid" style="display: none;">
+                <div id="content_mcp_dashboard" class="container-fluid" style="display: none;">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Dev Page</h3>
@@ -686,22 +686,18 @@ desired effect
                             </form>
                         </div>
                     </div>
+                </div>
 
-                    <div id="content_mcp_site" class="container-fluid" style="display: none;">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">MCP Dashboard Data</h3>
-                            </div>
-                            <div class="box-body">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        MCP Dashboard
-                                    </div>
-                                    <div class="panel-body">
-                                        <span id="mcp_site_miner_data"></span>
-                                    </div>
-                                </div>
-                            </div>
+                <div id="content_mcp_data" class="container-fluid" style="display: none;">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">MCP Miner Data</h3>
+                        </div>
+                        <div class="box-body">
+                            <strong>Site ID:</strong> <span id="mcp_data_site_id"></span> <br>
+                            <strong>Site Name:</strong> <span id="mcp_data_site_name"></span> <br>
+                            <strong>Miner ID:</strong> <span id="mcp_data_miner_id"></span> <br>
+                            <strong>Miner Name:</strong> <span id="mcp_data_miner_name"></span> <br>
                         </div>
                     </div>
                 </div>
@@ -968,8 +964,11 @@ desired effect
                 cache: false,
                 success: function(data) {
                     try {
-                        $("#mcp_site_miner_data").html(data.site.name);
-                        $("#content_mcp_site").show();
+                        $("#mcp_data_site_id").html(data.site.id);
+                        $("#mcp_data_site_name").html(data.site.name);
+                        $("#mcp_data_miner_id").html(data.miners[0].id);
+                        $("#mcp_data_miner_name").html(data.miners[0].name);
+                        $("#content_mcp_data").show();
                     } catch (err) {
                         // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
                     }
@@ -1375,7 +1374,8 @@ desired effect
             $("#content_dashboard").hide();
             $("#content_settings").hide();
             $("#content_logs").hide();
-            $("#content_dev").hide();
+            $("#content_mcp_dashboard").hide();
+            $("#content_mcp_data").hide();
             $("#" + show_div).show();
         }
 
