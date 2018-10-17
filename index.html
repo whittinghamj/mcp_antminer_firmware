@@ -966,8 +966,7 @@ desired effect
                 cache: false,
                 success: function(data) {
                     $("#mcp_site_key").val(data.site_key);
-                    mac_address = get_mac_address();
-                    get_mcp_site_miner_data(data.site_key, mac_address);
+                    get_mcp_site_miner_data(data.site_key);
                     // $("#content_mcp_data").hide();
                 },
                 error: function(data) {
@@ -1000,6 +999,7 @@ desired effect
             // console.log('MCP Site API Key: ' + mcp_site_key);
             // console.log('MCP Site Miner Details: http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=46:ED:B6:64:FC:6A');
 
+            var mac_address = get_mac_address();
             console.log('mac_address: ' + mac_address);
 
             $.ajax({
