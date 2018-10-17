@@ -975,25 +975,7 @@ desired effect
             });
         }, refreshTime );
 
-        // get mac address
-        function get_mac_address()
-        {
-            $.ajax({
-                url: '/cgi-bin/get_system_info.cgi',
-                type: 'GET',
-                dataType: 'json',
-                timeout: 30000,
-                cache: false,
-                success: function(data) {
-                    // console.log('mac_address from function = ' + data.macaddr)
-                    mac_address = data.macaddr;
-                    return mac_address;
-                },
-                error: function() {
-                    return 'unknown mac_address';
-                }
-            });
-        }
+        
         // get remote mcp site miner data json feed
         function get_mcp_site_miner_data(mcp_site_key)
         {
@@ -1029,15 +1011,15 @@ desired effect
                             }
                         },
                         error: function() {
+                            console.log('Unable to contact MCP dashboard');
                             console.log(data);
                         }
                     });
                 },
                 error: function() {
+                    console.log('Unable to get mac_address from /cgi-bin/get_system_info.cgi');
                 }
             });
-
-            
         }
 
         // get remote mcp site data json feed
