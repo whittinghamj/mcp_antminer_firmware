@@ -965,17 +965,8 @@ desired effect
                 timeout: 30000,
                 cache: false,
                 success: function(data) {
-                    try {
-                        $("#mcp_site_key").val(data.site_key);
-                        // if(data.site_key != '')
-                        // {
-                            get_mcp_site_miner_data(data.site_key);
-                        // }else{
-                            // $("#content_mcp_data").hide();
-                        // }
-                    } catch (err) {
-                        // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
-                    }
+                    get_mcp_site_miner_data(data.site_key);
+                    // $("#content_mcp_data").hide();
                 },
                 error: function(data) {
                     console.log('get mcp_site_data.txt failed: ' + data);
@@ -1005,6 +996,7 @@ desired effect
             });
 
             console.log('mac_address: ' + mac_address);
+            
             $.ajax({
                 url: 'http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=' + mac_address,
                 type: 'GET',
