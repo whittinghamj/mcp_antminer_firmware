@@ -154,6 +154,19 @@ desired effect
 			
             <div id="status_message"></div>
 
+            <div class="modal fade" id="saving_config" tabindex="-1" role="dialog" aria-labelledby="saving_config" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body text-center">
+                            <img src="widget-loader-lg-en.gif" height="250px"> <br>
+                            <br>
+                            <h4>Your changes are being saved and applied.</h4>
+                            <small>Please note that mining will stop and can take up to 10 minutes to restart.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal fade" id="processing_modal" tabindex="-1" role="dialog" aria-labelledby="processing_modal" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -650,130 +663,19 @@ desired effect
                             <h3 class="box-title">Dev Page</h3>
                         </div>
                         <div class="box-body">
-                            <form action="/cgi-bin/set_miner_conf.cgi" id="config_file" method="post">
+                            <form action="/cgi-bin/set_mcp_data.cgi" id="mcp_site_data" method="post">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
-                                        Pool 1
+                                        MCP Dashboard
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-lg-4 col-xs-12">
                                                 <div class="form-group">
-                                                    <label for="pool_1_url">Pool URL:</label>
-                                                    <input type="text" class="form-control" id="pool_1_url" name="pool_1_url" value="" placeholder="stratum+tcp://sha256.usa.nicehash.com:3334">
+                                                    <label for="mcp_site_key">API Key:</label>
+                                                    <input type="text" class="form-control" id="mcp_site_key" name="mcp_site_key" value="" placeholder="">
                                                 </div>
                                             </div>
-
-                                            <div class="col-lg-4 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="pool_1_user">Pool User:</label>
-                                                    <input type="text" class="form-control" id="pool_1_user" name="pool_1_user" value="" placeholder="epic_miner">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="pool_1_pass">Pool Pass:</label>
-                                                    <input type="text" class="form-control" id="pool_1_pass" name="pool_1_pass" value="" placeholder="123">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        Pool 2
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-lg-4 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="pool_2_url">Pool URL:</label>
-                                                    <input type="text" class="form-control" id="pool_2_url" name="pool_2_url" value="" placeholder="stratum+tcp://sha256.usa.nicehash.com:3334">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="pool_2_user">Pool User:</label>
-                                                    <input type="text" class="form-control" id="pool_2_user" name="pool_2_user" value="" placeholder="epic_miner">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="pool_1_pass">Pool Pass:</label>
-                                                    <input type="text" class="form-control" id="pool_2_pass" name="pool_2_pass" value="" placeholder="123">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        Pool 3
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-lg-4 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="pool_3_url">Pool URL:</label>
-                                                    <input type="text" class="form-control" id="pool_3_url" name="pool_3_url" value="" placeholder="stratum+tcp://sha256.usa.nicehash.com:3334">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="pool_3_user">Pool User:</label>
-                                                    <input type="text" class="form-control" id="pool_3_user" name="pool_3_user" value="" placeholder="epic_miner">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="pool_3_pass">Pool Pass:</label>
-                                                    <input type="text" class="form-control" id="pool_3_pass" name="pool_3_pass" value="" placeholder="123">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        Advanced Settings
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="fan_speed">Fan Speed:</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="fan_speed" name="fan_speed" value=""> <span class="input-group-addon">%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!--
-                                            <div class="col-lg-4 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="voltage">Voltage:</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="voltage" name="voltage" value=""> <span class="input-group-addon">V</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            -->
-
-                                            <div class="col-lg-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="frequency">Frequency:</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="frequency" name="frequency" value=""> <span class="input-group-addon">M</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <input type="hidden" id="_ant_nobeeper" name="_ant_nobeeper" value="false">
-                                            <input type="hidden" id="_ant_notempoverctrl" name="_ant_notempoverctrl" value="false">
-                                            <input type="hidden" id="_ant_fan_customize_switch" name="_ant_fan_customize_switch" value="true">
                                         </div>
                                     </div>
                                 </div>
@@ -1261,6 +1163,30 @@ desired effect
                 }
             });
         }, refreshTime );
+
+        // post settings to mcp_site_data file
+        $("#mcp_site_data").submit(function(event)
+        {
+            $('#saving_config').modal('show');
+
+            /* stop form from submitting normally */
+            event.preventDefault();
+
+            /* get the action attribute from the <form action=""> element */
+            var $form = $( this ),
+            url = $form.attr( 'action' );
+
+            /* Send the data using post with element id name and name2*/
+            var posting = $.post(url, { 
+                mcp_site_key: $('#mcp_site_key').val(), 
+            });
+
+            /* Alerts the results */
+            posting.done(function( data )
+            {
+                $('#saving_config').modal('hide');
+            });
+        });
 
         // post settings to config file
         $("#config_file").submit(function(event)
