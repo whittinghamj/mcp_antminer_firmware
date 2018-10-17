@@ -914,9 +914,27 @@ desired effect
         // get mcp_site_data.txt
         window.setInterval( function()
         {
+            $.ajax({
+                url: '/cgi-bin/get_mcp_data.cgi',
+                type: 'GET',
+                dataType: 'json',
+                timeout: 30000,
+                cache: false,
+                success: function(data) {
+                    try {
+                        $("#mcp_site_key").val(data.site_key);
+                    } catch (err) {
+                        alert('Invalid system and miner configuration file. Edit manually or reset to default.');
+                    }
+                },
+                error: function() {
+                    console.log(data);
+                }
+            });
+            
             $.getJSON("/cgi-bin/get_mcp_data.cgi", function(data){
                 alert(data);
-                $("#mcp_site_key").val(data);
+                $("#mcp_site_key").val(data.site_key);
             });
         }, refreshTime );
 
