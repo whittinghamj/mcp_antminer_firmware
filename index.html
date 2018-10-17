@@ -1008,36 +1008,36 @@ desired effect
                 timeout: 30000,
                 cache: false,
                 success: function(data) {
-                    // console.log('mac_address from function = ' + data.macaddr)
                     var mac_address = data.macaddr;
-                },
-                error: function() {
-                }
-            });
-            console.log('mac_address: ' + mac_address);
 
-            $.ajax({
-                url: 'http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=46:ED:B6:64:FC:6A',
-                type: 'GET',
-                dataType: 'json',
-                timeout: 30000,
-                cache: false,
-                success: function(data) {
-                    try {
-                        $("#mcp_data_site_id").html(data.site.id);
-                        $("#mcp_data_site_name").html(data.site.name);
-                        $("#mcp_data_miner_id").html(data.miners[0].id);
-                        $("#mcp_data_miner_name").html(data.miners[0].name);
-                        $("#mcp_data_miner_location").html(data.miners[0].location.row+' / '+data.miners[0].location.rack+' / '+data.miners[0].location.shelf+' / '+data.miners[0].location.position);
-                        $("#content_mcp_data").show();
-                    } catch (err) {
-                        // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
-                    }
+                    $.ajax({
+                        url: 'http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address='+mac_address,
+                        type: 'GET',
+                        dataType: 'json',
+                        timeout: 30000,
+                        cache: false,
+                        success: function(data) {
+                            try {
+                                $("#mcp_data_site_id").html(data.site.id);
+                                $("#mcp_data_site_name").html(data.site.name);
+                                $("#mcp_data_miner_id").html(data.miners[0].id);
+                                $("#mcp_data_miner_name").html(data.miners[0].name);
+                                $("#mcp_data_miner_location").html(data.miners[0].location.row+' / '+data.miners[0].location.rack+' / '+data.miners[0].location.shelf+' / '+data.miners[0].location.position);
+                                $("#content_mcp_data").show();
+                            } catch (err) {
+                                // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
+                            }
+                        },
+                        error: function() {
+                            console.log(data);
+                        }
+                    });
                 },
                 error: function() {
-                    console.log(data);
                 }
             });
+
+            
         }
 
         // get remote mcp site data json feed
