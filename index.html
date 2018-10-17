@@ -1069,12 +1069,19 @@ desired effect
         function access_remote_url(external_url)
         {
             $('#processing_modal').modal('show');
+            $('#miner_online').addClass("hidden");
+            $('#miner_offline').removeClass("hidden");
+            $('#pool_1_stats').addClass("hidden");
+            $('#pool_2_stats').addClass("hidden");
+            $('#pool_3_stats').addClass("hidden");
+
             $.ajax({
-               url:external_url,
-               type:'GET',
-               success: function(data){
-                   // $('#content').html(data);
-                   $('#processing_modal').modal('hide');
+                url:external_url,
+                type:'GET',
+                success: function(data){
+                    setTimeout(function() {
+                       $('#processing_modal').modal('hide');
+                    }, 5000);
                }
             });
         }
