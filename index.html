@@ -1036,7 +1036,7 @@ desired effect
 
         function toggle_content(show_div)
         {
-            $("#content_dashboard").hide();
+            $("#content_dashboard").fadeOut(1000);
             $("#content_settings").hide();
             $("#content_logs").hide();
             $("#" + show_div).show();
