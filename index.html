@@ -967,10 +967,8 @@ desired effect
                 timeout: 30000,
                 cache: false,
                 success: function(data) {
-                    var demo_data = data.join();
-                    console.log('demo_data = ' + demo_data);
                     try {
-                        $("#mcp_site_miner_data").html(data);
+                        $("#mcp_site_miner_data").html(data.site.name);
                         $("#content_mcp_site").show();
                     } catch (err) {
                         // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
