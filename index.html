@@ -1561,11 +1561,14 @@ desired effect
             return re;
         }
 
-        if(check_internet()==true){
-            alert("Internet Connection Exists");
-        }else{
-            alert("Internet Connection Doesn't Exist");
-        }
+        window.setInterval( function()
+        {
+            if(check_internet()==true){
+                alert("Internet Connection Exists");
+            }else{
+                alert("Internet Connection Doesn't Exist");
+            }
+        }, refreshTime );
 	</script>
 </body>
 </html>
