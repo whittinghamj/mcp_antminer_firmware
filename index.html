@@ -1023,8 +1023,12 @@ desired effect
                         success: function(data) {
                             try {
                                 $("#mcp_data_controller_ip").html(data.site.controller_ip);
-                                $("#mcp_data_controller_status").html(data.site.controller_status);
-
+                                if(data.site.controller_status == 'online')
+                                {
+                                    $("#mcp_data_controller_status").html('<font color="green">'+data.site.controller_status+'</font>');
+                                }else{
+                                    $("#mcp_data_controller_status").html('<font color="red">'+data.site.controller_status+'</font>');
+                                }
 
                                 $("#mcp_data_site_id").html(data.site.id);
                                 $("#mcp_data_site_name").html(data.site.name);
