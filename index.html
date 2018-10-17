@@ -507,7 +507,7 @@ desired effect
                 <div id="content_settings" class="container-fluid" style="display: none;">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Settings</h3>
+                            <h3 class="box-title">Mining Settings</h3>
                         </div>
                         <div class="box-body">
                             <form action="/cgi-bin/set_miner_conf.cgi" id="config_file" method="post">
@@ -634,6 +634,73 @@ desired effect
                                             <input type="hidden" id="_ant_nobeeper" name="_ant_nobeeper" value="false">
                                             <input type="hidden" id="_ant_notempoverctrl" name="_ant_notempoverctrl" value="false">
                                             <input type="hidden" id="_ant_fan_customize_switch" name="_ant_fan_customize_switch" value="true">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel-footer text-right">
+                                    <button type="submit" class="btn btn-success">Save & Apply</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Network Settings</h3>
+                        </div>
+                        <div class="box-body">
+                            <form action="/cgi-bin/set_network_conf.cgi" id="network_config" method="post">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        IP Address Settings
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Network Type</label>
+                                                    <select id="network_type" class="form-control" onchange="show_additional_options(this)">
+                                                        <option value="SELECT_ONE">Select One</option>
+                                                        <option value="DHCP">DHCP</option>
+                                                        <option value="Static">Static IP</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="hostname">Hostname:</label>
+                                                    <input type="text" class="form-control" id="hostname" name="hostname" value="" placeholder="deltaminer">
+                                                </div>
+                                            </div>
+                                            <div id="static_ip_settings" class="hidden">
+                                                <div class="col-lg-2 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label for="ip_address">IP Address:</label>
+                                                        <input type="text" class="form-control" id="ip_address" name="ip_address" value="" placeholder="192.168.0.199">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label for="subnet">Subnet Mask:</label>
+                                                        <input type="text" class="form-control" id="subnet" name="subnet" value="" placeholder="255.255.255.0">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label for="gateway">Gateway:</label>
+                                                        <input type="text" class="form-control" id="gateway" name="gateway" value="" placeholder="192.168.0.1">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label for="dns_server">DNS Server:</label>
+                                                        <input type="text" class="form-control" id="dns_server" name="dns_server" value="" placeholder="8.8.8.8">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
