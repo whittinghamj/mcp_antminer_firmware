@@ -31,11 +31,11 @@ do
 	#ant_var=${ant_var//%5C/\\}
 	case ${i} in
 		0 )
-		ant_conf_nettype=${ant_var/site_key=/}
+		site_key=${ant_var/site_key=/}
 		;;
 	esac
 	i=`expr $i + 1`
 done
 
-echo $ant_conf_nettype >> /www/pages/mcp_data.txt
+echo $site_key >> /www/pages/mcp_data.txt
 
