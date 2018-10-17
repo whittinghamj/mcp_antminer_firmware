@@ -941,9 +941,9 @@ desired effect
         // every 3 seconds in milliseconds
         var refreshTime = 3000;
 
-        // get btc price
         window.setInterval( function()
         {
+            // get btc price
             $.ajax({
                 url: '/cgi-bin/get_crypto_prices.cgi',
                 type: 'GET',
@@ -961,11 +961,8 @@ desired effect
                     // console.log(data);
                 }
             });
-        }, refreshTime );
-        
-        // get system status
-        window.setInterval( function()
-        {
+
+            // get system status
             $.ajax({
                 url: '/cgi-bin/get_system_info.cgi',
                 type: 'GET',
@@ -1055,11 +1052,8 @@ desired effect
                     console.log(data);
                 }
             });
-        }, refreshTime );
 
-        // get mcp_site_data.txt
-        window.setInterval( function()
-        {
+            // get mcp_site_data.txt
             $.ajax({
                 url: '/cgi-bin/get_mcp_data.cgi',
                 type: 'GET',
@@ -1080,118 +1074,8 @@ desired effect
                     console.log('get mcp_site_data.txt failed: ' + data);
                 }
             });
-        }, refreshTime );
 
-        
-        // get remote mcp site miner data json feed
-        function get_mcp_site_miner_data(mcp_site_key)
-        {
-            // console.log('MCP Site API Key: ' + mcp_site_key);
-            // console.log('MCP Site Miner Details: http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=46:ED:B6:64:FC:6A');
-
-            // get the mac_address
-            $.ajax({
-                url: '/cgi-bin/get_system_info.cgi',
-                type: 'GET',
-                dataType: 'json',
-                timeout: 30000,
-                cache: false,
-                success: function(data) {
-                    var mac_address = data.macaddr;
-
-                    $.ajax({
-                        url: 'http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address='+mac_address,
-                        type: 'GET',
-                        dataType: 'json',
-                        timeout: 30000,
-                        cache: false,
-                        success: function(data) {
-                            try {
-                                $("#mcp_data_controller_ip").html(data.site.controller_ip);
-                                if(data.site.controller_status == 'online')
-                                {
-                                    $("#mcp_data_controller_status").html('<font color="green">'+data.site.controller_status+'</font>');
-                                }else{
-                                    $("#mcp_data_controller_status").html('<font color="red">'+data.site.controller_status+'</font>');
-                                }
-
-                                $("#mcp_data_site_id").html(data.site.id);
-                                $("#mcp_data_site_name").html(data.site.name);
-                                $("#mcp_data_miner_id").html(data.miners[0].id);
-                                $("#mcp_data_miner_name").html(data.miners[0].name);
-                                $("#mcp_data_miner_location").html(data.miners[0].location.row+' / '+data.miners[0].location.rack+' / '+data.miners[0].location.shelf+' / '+data.miners[0].location.position);
-                                $("#content_mcp_data").show();
-                            } catch (err) {
-                                // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
-                            }
-                        },
-                        error: function() {
-                            console.log('Unable to contact MCP dashboard');
-                            console.log(data);
-                        }
-                    });
-                },
-                error: function() {
-                    console.log('Unable to get mac_address from /cgi-bin/get_system_info.cgi');
-                }
-            });
-        }
-
-        // get remote mcp site data json feed
-        function get_mcp_site_data(mcp_site_key)
-        {
-            $.ajax({
-                url: '/cgi-bin/get_mcp_data.cgi',
-                type: 'GET',
-                dataType: 'json',
-                timeout: 30000,
-                cache: false,
-                success: function(data) {
-                    try {
-                        $("#mcp_site_key").val(data.site_key);
-                        
-                    } catch (err) {
-                        // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
-                    }
-                },
-                error: function() {
-                    console.log(data);
-                }
-            });
-        }
-
-        // get network settings
-        function get_network_settings()
-        {
-            $.ajax({
-                url: '/cgi-bin/get_network_info.cgi',
-                type: 'GET',
-                dataType: 'json',
-                timeout: 30000,
-                cache: false,
-                success: function(data) {
-                    try {
-                        $("select option[value=" + data.nettype + "]").attr("selected","selected");
-                        $("#hostname").val(data.conf_hostname);
-                        $("#hostname").val(data.conf_hostname);
-                        $("#ip_address").val(data.ipaddress);
-                        $("#dashboard_ip_address").html(data.ipaddress);
-                        $("#subnet").val(data.conf_netmask);
-                        $("#gateway").val(data.conf_gateway);
-                        $("#dns_server").val(data.conf_dnsservers);
-                    } catch (err) {
-                        alert('Invalid system and miner configuration file. Edit manually or reset to default.');
-                    }
-                },
-                error: function() {
-                    console.log(data);
-                }
-            });
-        }
-
-        // get miner status
-        window.setInterval( function()
-        {
+            // get miner status
             $.getJSON("/cgi-bin/get_miner_status.cgi", function(data){
                 $("#show_elapsed").html(secondsTotime(data.summary.elapsed));
 
@@ -1382,11 +1266,8 @@ desired effect
 
                 $("#dashboard_4").height($("#dashboard_1").height());
             });
-        }, refreshTime );
 
-        // get kernel log
-        window.setInterval( function()
-        {
+            // get kernel log
             $.ajax({
                 url: '/cgi-bin/get_kernel_log.cgi',
                 type: 'GET',
@@ -1411,7 +1292,124 @@ desired effect
                     //alert('Ajax Error');
                 }
             });
+
+            // check internet connection
+            if(check_internet()==true){
+                // alert("Internet Connection Exists");
+                $('#internet_connection').addClass("hidden");
+            }else{
+                access_remote_url('/cgi-bin/kill_bmminer.cgi');
+                $('#internet_connection').removeClass("hidden");
+            }
+
         }, refreshTime );
+
+        
+        // get remote mcp site miner data json feed
+        function get_mcp_site_miner_data(mcp_site_key)
+        {
+            // console.log('MCP Site API Key: ' + mcp_site_key);
+            // console.log('MCP Site Miner Details: http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=46:ED:B6:64:FC:6A');
+
+            // get the mac_address
+            $.ajax({
+                url: '/cgi-bin/get_system_info.cgi',
+                type: 'GET',
+                dataType: 'json',
+                timeout: 30000,
+                cache: false,
+                success: function(data) {
+                    var mac_address = data.macaddr;
+
+                    $.ajax({
+                        url: 'http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address='+mac_address,
+                        type: 'GET',
+                        dataType: 'json',
+                        timeout: 30000,
+                        cache: false,
+                        success: function(data) {
+                            try {
+                                $("#mcp_data_controller_ip").html(data.site.controller_ip);
+                                if(data.site.controller_status == 'online')
+                                {
+                                    $("#mcp_data_controller_status").html('<font color="green">'+data.site.controller_status+'</font>');
+                                }else{
+                                    $("#mcp_data_controller_status").html('<font color="red">'+data.site.controller_status+'</font>');
+                                }
+
+                                $("#mcp_data_site_id").html(data.site.id);
+                                $("#mcp_data_site_name").html(data.site.name);
+                                $("#mcp_data_miner_id").html(data.miners[0].id);
+                                $("#mcp_data_miner_name").html(data.miners[0].name);
+                                $("#mcp_data_miner_location").html(data.miners[0].location.row+' / '+data.miners[0].location.rack+' / '+data.miners[0].location.shelf+' / '+data.miners[0].location.position);
+                                $("#content_mcp_data").show();
+                            } catch (err) {
+                                // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
+                            }
+                        },
+                        error: function() {
+                            console.log('Unable to contact MCP dashboard');
+                            console.log(data);
+                        }
+                    });
+                },
+                error: function() {
+                    console.log('Unable to get mac_address from /cgi-bin/get_system_info.cgi');
+                }
+            });
+        }
+
+        // get remote mcp site data json feed
+        function get_mcp_site_data(mcp_site_key)
+        {
+            $.ajax({
+                url: '/cgi-bin/get_mcp_data.cgi',
+                type: 'GET',
+                dataType: 'json',
+                timeout: 30000,
+                cache: false,
+                success: function(data) {
+                    try {
+                        $("#mcp_site_key").val(data.site_key);
+                        
+                    } catch (err) {
+                        // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
+                    }
+                },
+                error: function() {
+                    console.log(data);
+                }
+            });
+        }
+
+        // get network settings
+        function get_network_settings()
+        {
+            $.ajax({
+                url: '/cgi-bin/get_network_info.cgi',
+                type: 'GET',
+                dataType: 'json',
+                timeout: 30000,
+                cache: false,
+                success: function(data) {
+                    try {
+                        $("select option[value=" + data.nettype + "]").attr("selected","selected");
+                        $("#hostname").val(data.conf_hostname);
+                        $("#hostname").val(data.conf_hostname);
+                        $("#ip_address").val(data.ipaddress);
+                        $("#dashboard_ip_address").html(data.ipaddress);
+                        $("#subnet").val(data.conf_netmask);
+                        $("#gateway").val(data.conf_gateway);
+                        $("#dns_server").val(data.conf_dnsservers);
+                    } catch (err) {
+                        alert('Invalid system and miner configuration file. Edit manually or reset to default.');
+                    }
+                },
+                error: function() {
+                    console.log(data);
+                }
+            });
+        }
 
         // post settings to mcp_site_data file
         $("#mcp_site_data").submit(function(event)
@@ -1521,12 +1519,6 @@ desired effect
             $('#saving_config').modal('hide');
         });
 
-        $(document).ready(function()
-        {
-            get_network_settings();
-            get_mcp_site_data();
-        });
-
         function toggle_content(show_div)
         {
             $("#content_dashboard").hide();
@@ -1579,16 +1571,11 @@ desired effect
             return re;
         }
 
-        window.setInterval( function()
+        $(document).ready(function()
         {
-            if(check_internet()==true){
-                // alert("Internet Connection Exists");
-                $('#internet_connection').addClass("hidden");
-            }else{
-                access_remote_url('/cgi-bin/kill_bmminer.cgi');
-                $('#internet_connection').removeClass("hidden");
-            }
-        }, refreshTime );
+            get_network_settings();
+            get_mcp_site_data();
+        });
 	</script>
 </body>
 </html>
