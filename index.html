@@ -711,6 +711,20 @@ desired effect
                                 <div class="col-lg-3">
                                     <div class="box box-primary">
                                         <div class="box-body">
+                                            <strong>Controller IP:</strong> <span id="mcp_data_controller_ip"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="box box-primary">
+                                        <div class="box-body">
+                                            <strong>Controller Status:</strong> <span id="mcp_data_controller_status"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="box box-primary">
+                                        <div class="box-body">
                                             <strong>Miner ID:</strong> <span id="mcp_data_miner_id"></span>
                                         </div>
                                     </div>
@@ -1008,6 +1022,10 @@ desired effect
                         cache: false,
                         success: function(data) {
                             try {
+                                $("#mcp_data_controller_ip").html(data.site.controller_ip);
+                                $("#mcp_data_controller_status").html(data.site.controller_status);
+
+
                                 $("#mcp_data_site_id").html(data.site.id);
                                 $("#mcp_data_site_name").html(data.site.name);
                                 $("#mcp_data_miner_id").html(data.miners[0].id);
