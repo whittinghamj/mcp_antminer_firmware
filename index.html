@@ -698,7 +698,7 @@ desired effect
                                         MCP Dashboard
                                     </div>
                                     <div class="panel-body">
-                                        <span id="mcp_site_data_json"></span>
+                                        <span id="mcp_site_miner_data"></span>
                                     </div>
                                 </div>
                             </div>
@@ -941,6 +941,7 @@ desired effect
                 success: function(data) {
                     try {
                         $("#mcp_site_key").val(data.site_key);
+                        get_mcp_site_miner_data(data.site_key);
                     } catch (err) {
                         // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
                     }
@@ -950,6 +951,54 @@ desired effect
                 }
             });
         }, refreshTime );
+
+        // http://dashboard.miningcontrolpanel.com/api/?key=74b381eae7b7edee451469a1d2d3646d&c=site_miner&miner_mac_address=46:ED:B6:64:FC:6A
+
+        // get remote mcp site miner data json feed
+        function get_mcp_site_miner_data(mcp_site_key)
+        {
+            $.ajax({
+                url: 'http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=46:ED:B6:64:FC:6A',
+                type: 'GET',
+                dataType: 'json',
+                timeout: 30000,
+                cache: false,
+                success: function(data) {
+                    try {
+                        $("#mcp_site_miner_data").html(data);
+                        $("#content_mcp_site").show();
+                    } catch (err) {
+                        // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
+                    }
+                },
+                error: function() {
+                    console.log(data);
+                }
+            });
+        }
+
+        // get remote mcp site data json feed
+        function get_mcp_site_data(mcp_site_key)
+        {
+            $.ajax({
+                url: '/cgi-bin/get_mcp_data.cgi',
+                type: 'GET',
+                dataType: 'json',
+                timeout: 30000,
+                cache: false,
+                success: function(data) {
+                    try {
+                        $("#mcp_site_key").val(data.site_key);
+                        
+                    } catch (err) {
+                        // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
+                    }
+                },
+                error: function() {
+                    console.log(data);
+                }
+            });
+        }
 
         // get network settings
         function get_network_settings()
