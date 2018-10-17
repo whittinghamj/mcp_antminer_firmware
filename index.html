@@ -959,7 +959,7 @@ desired effect
         {
             console.log('MCP Site API Key: ' + mcp_site_key);
             console.log('MCP Site Miner Details: http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=46:ED:B6:64:FC:6A');
-            
+
             $.ajax({
                 url: 'http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=46:ED:B6:64:FC:6A',
                 type: 'GET',
@@ -967,6 +967,8 @@ desired effect
                 timeout: 30000,
                 cache: false,
                 success: function(data) {
+                    var demo_data = data.join();
+                    console.log('demo_data = ' + demo_data);
                     try {
                         $("#mcp_site_miner_data").html(data);
                         $("#content_mcp_site").show();
