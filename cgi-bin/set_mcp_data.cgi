@@ -37,5 +37,7 @@ do
 	i=`expr $i + 1`
 done
 
-echo $site_key > /www/pages/mcp_site_data.txt
+echo "{" > /www/pages/mcp_site_data.txt
+echo "\"site_key\" : \"$site_key\"" >> /www/pages/mcp_site_data.txt
+echo "}" >> /www/pages/mcp_site_data.txt
 sed -i -e 's/mcp_//g' /www/pages/mcp_site_data.txt
