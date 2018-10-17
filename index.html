@@ -978,7 +978,6 @@ desired effect
         // get mac address
         function get_mac_address()
         {
-            var mac_address = [];
             $.ajax({
                 url: '/cgi-bin/get_system_info.cgi',
                 type: 'GET',
@@ -1001,7 +1000,21 @@ desired effect
             // console.log('MCP Site API Key: ' + mcp_site_key);
             // console.log('MCP Site Miner Details: http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=46:ED:B6:64:FC:6A');
 
-            console.log('mac_address: ' + get_mac_address());
+            // get the mac_address
+            $.ajax({
+                url: '/cgi-bin/get_system_info.cgi',
+                type: 'GET',
+                dataType: 'json',
+                timeout: 30000,
+                cache: false,
+                success: function(data) {
+                    // console.log('mac_address from function = ' + data.macaddr)
+                    var mac_address = data.macaddr;
+                },
+                error: function() {
+                }
+            });
+            console.log('mac_address: ' + mac_address);
 
             $.ajax({
                 url: 'http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=46:ED:B6:64:FC:6A',
@@ -1415,7 +1428,6 @@ desired effect
         {
             get_network_settings();
             get_mcp_site_data();
-            alert(get_mac_address());
         });
 
         function toggle_content(show_div)
