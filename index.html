@@ -1004,6 +1004,7 @@ desired effect
                 }
             });
 
+            console.log('mac_address: ' + mac_address);
             $.ajax({
                 url: 'http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=' + mac_address,
                 type: 'GET',
