@@ -911,6 +911,14 @@ desired effect
             });
         }, refreshTime );
 
+        // get mcp_site_data.txt
+        window.setInterval( function()
+        {
+            $.getJSON("/cgi-bin/get_mcp_data.cgi", function(data){
+                $("#mcp_site_key").val(data);
+            });
+        }, refreshTime );
+
         // get network settings
         function get_network_settings()
         {
@@ -1275,6 +1283,7 @@ desired effect
         $(document).ready(function()
         {
             get_network_settings();
+            get_mcp_site_data();
         });
 
         function toggle_content(show_div)
