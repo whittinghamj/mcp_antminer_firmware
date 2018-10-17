@@ -957,6 +957,7 @@ desired effect
         // get remote mcp site miner data json feed
         function get_mcp_site_miner_data(mcp_site_key)
         {
+            console.log('MCP Site API Key: ' + mcp_site_key);
             $.ajax({
                 url: 'http://dashboard.miningcontrolpanel.com/api/?key=' + mcp_site_key + '&c=site_miner&miner_mac_address=46:ED:B6:64:FC:6A',
                 type: 'GET',
