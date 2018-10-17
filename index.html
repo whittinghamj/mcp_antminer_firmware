@@ -915,6 +915,7 @@ desired effect
         window.setInterval( function()
         {
             $.getJSON("/cgi-bin/get_mcp_data.cgi", function(data){
+                alert(data);
                 $("#mcp_site_key").val(data);
             });
         }, refreshTime );
