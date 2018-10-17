@@ -146,6 +146,30 @@ desired effect
         <div class="content-wrapper">
 			
             <div id="status_message"></div>
+
+            <div class="modal fade" id="processing_modal" tabindex="-1" role="dialog" aria-labelledby="processing_modal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!--
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">Processing</h4>
+                        </div>
+                        -->
+                        <div class="modal-body text-center">
+                            <img src="widget-loader-lg-en.gif" height="250px"> <br>
+                            <br>
+                            <h4>Your changes are being applied.</h4>
+                            <!-- <small>Please note that mining will stop and can take up to 10 minutes to restart.</small> -->
+                        </div>
+                        <!--
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </div>
                         	
             <!--
             <section class="content-header">
@@ -1044,13 +1068,13 @@ desired effect
 
         function access_remote_url(external_url)
         {
-            alert(external_url);
+            $('#processing_modal').modal('show');
             $.ajax({
                url:external_url,
                type:'GET',
                success: function(data){
                    // $('#content').html(data);
-                   alert('done');
+                   $('#processing_modal').modal('hide');
                }
             });
         }
