@@ -667,7 +667,10 @@ desired effect
                                 <div class="panel panel-primary">
                                     <div class="panel-body">
                                         <div class="row">
-                                            Please enter your MCP Dashboard Site API Key to enable this section. <hr>
+                                            <span>
+                                                Please enter your MCP Dashboard Site API Key to enable this section.
+                                            </span>
+                                            <hr>
                                             <div class="col-lg-4 col-xs-12">
                                                 <div class="form-group">
                                                     <label for="mcp_site_key">Site API Key:</label>
@@ -966,7 +969,12 @@ desired effect
                 cache: false,
                 success: function(data) {
                     $("#mcp_site_key").val(data.site_key);
-                    get_mcp_site_miner_data(data.site_key);
+                    if(data.site_key == '')
+                    {
+                        $("#content_mcp_data").hide();
+                    }else{
+                        get_mcp_site_miner_data(data.site_key);
+                    }
                     // $("#content_mcp_data").hide();
                 },
                 error: function(data) {
