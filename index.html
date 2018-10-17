@@ -967,12 +967,12 @@ desired effect
                 success: function(data) {
                     try {
                         $("#mcp_site_key").val(data.site_key);
-                        if(data.site_key != '')
-                        {
+                        // if(data.site_key != '')
+                        // {
                             get_mcp_site_miner_data(data.site_key);
-                        }else{
-                            $("#content_mcp_data").hide();
-                        }
+                        // }else{
+                            // $("#content_mcp_data").hide();
+                        // }
                     } catch (err) {
                         // alert('Invalid system and miner configuration file. Edit manually or reset to default.');
                     }
