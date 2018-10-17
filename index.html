@@ -83,10 +83,10 @@ desired effect
                                 
                                 <li class="user-body">
                                     <div class="col-xs-6 text-center">
-                                        <a href="#" onclick="access_remote_url('/cgi-bin/kill_bmminer.cgi');">Restart Mining</a>
+                                        <a href="#" onclick="access_remote_url('/cgi-bin/kill_bmminer.cgi');" class="btn btn-default btn-flat">Restart Mining</a>
                                     </div>
                                     <div class="col-xs-6 text-center">
-                                        <a href="#" onclick="access_remote_url('/cgi-bin/reboot.cgi');">Reboot Miner</a>
+                                        <a href="#" onclick="access_remote_url('/cgi-bin/reboot.cgi');" class="btn btn-default btn-flat">Reboot Miner</a>
                                     </div>
                                 </li>
                                 
@@ -1087,9 +1087,20 @@ desired effect
                 url:external_url,
                 type:'GET',
                 success: function(data){
-                    setTimeout(function() {
-                       $('#processing_modal').modal('hide');
-                    }, 5000);
+
+                    if(external_url == '/cgi-bin/reboot.cgi')
+                    {
+                        setTimeout(function() {
+                           $('#processing_modal').modal('hide');
+                        }, 90000);
+                    }
+
+                    if(external_url == '/cgi-bin/kill_bmminer.cgi')
+                    {
+                        setTimeout(function() {
+                           $('#processing_modal').modal('hide');
+                        }, 10000);
+                    }
                }
             });
         }
