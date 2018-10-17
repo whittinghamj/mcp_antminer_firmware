@@ -985,6 +985,7 @@ desired effect
                 timeout: 30000,
                 cache: false,
                 success: function(data) {
+                    console.log('mac_address from function = ' + data.macaddr)
                     var mac_address = data.macaddr;
                     return mac_address;
                 },
