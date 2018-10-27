@@ -33,6 +33,10 @@ then
 		bestshare=0
 	else
 		echo "BMMiner is up and running"
+
+		ant_fan=${bmminer#*fan1=}
+
+		echo "Fan Speed: "$ant_fan
 	fi
 else
 	echo "Found CGMiner"
