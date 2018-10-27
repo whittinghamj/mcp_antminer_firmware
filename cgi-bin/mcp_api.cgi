@@ -34,9 +34,13 @@ then
 	else
 		echo "BMMiner is up and running"
 
-		ant_fan=${bmminer#*fan1=}
+		ant_fan=${ant_stats_tmp#*fan3=}
+		ant_fan=${ant_fan%%,fan4=*}
+		ant_fan3=${ant_fan}
+		ant_fan3_split=$(echo $ant_fan3| sed -r ':1;s/(.*[0-9])([0-9]{3})/\1,\2/;t1')
 
-		echo "Fan Speed: "$ant_fan
+
+		echo "Fan Speed: "${ant_fan3_split}
 	fi
 else
 	echo "Found CGMiner"
